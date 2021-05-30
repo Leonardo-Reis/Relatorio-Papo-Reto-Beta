@@ -1,12 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/index.css">
+    <title>Login</title>
 </head>
 <body>
-    FOOI
+    {% block content %}
+    <div class="main">
+        <form method="post">
+            <h1>Login</h1>
+            <div class="input">
+                <label>Nome</label>
+                <input type="text" name="nome" autocomplete="off" value="{{ session['nome'] if session}}">
+            </div>
+            <div class="input">
+                <label>Senha</label>
+                <input type="password" name="senha" value="{{ session['senha'] if session }}">
+            </div>
+            <div class="submit">
+                <input type="submit" value="Login">
+            </div>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for msg in messages %}
+                            <p>{{msg}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            {% endblock %}
+        </form>
+    </div>
 </body>
 </html>
